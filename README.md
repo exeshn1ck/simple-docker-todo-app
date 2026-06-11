@@ -1,6 +1,6 @@
 # Todo Docker App
 
-Simple Todo API built with FastAPI, PostgreSQL and Docker Compose.
+Simple Todo API built with FastAPI, PostgreSQL, Docker Compose and Nginx reverse proxy.
 
 ## Stack
 - FastAPI
@@ -8,6 +8,7 @@ Simple Todo API built with FastAPI, PostgreSQL and Docker Compose.
 - Docker
 - Docker Compose
 - SQLAlchemy
+- Nginx
 
 ## How to run
 
@@ -22,7 +23,14 @@ DB_PASSWORD=your_password
 Run the application:
 
 ``` bash
-docker-compose up --build
+docker compose up --build
+```
+
+The application is available through Nginx:
+
+```text
+http://localhost/health
+http://localhost/todos
 ```
 
 ## API endpoints
@@ -47,6 +55,8 @@ DELETE  /todos/{id}
 
 PostgreSQL data is stored in a Docker volume, so data is preserved after container restart.
 
+Nginx receives requests on port `80` and forwards them to the FastAPI container on port `8000`.
+
 To stop containers:
 
 ```bash
@@ -67,3 +77,5 @@ docker compose down -v
 - Using Docker volumes
 - Using environment variables
 - Debugging containers with logs
+- Configuring Nginx as a reverse proxy
+- Routing requests from Nginx to FastAPI container
