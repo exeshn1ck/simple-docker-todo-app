@@ -69,6 +69,23 @@ To remove containers and volume:
 docker compose down -v
 ```
 
+## Kubernetes
+
+The project also contains basic Kubernetes manifests in the `k8s/` directory.
+
+Used Kubernetes resources:
+
+- Deployment
+- Service
+- ConfigMap
+- Secret
+
+Run:
+
+```bash
+kubectl apply -f k8s/
+```
+
 ## What I learned
 
 - Building Docker images
